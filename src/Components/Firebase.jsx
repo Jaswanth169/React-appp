@@ -1,14 +1,18 @@
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { config } from 'dotenv';
+
+// Load environment variables from .env file
+config();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAtagpsMTKHyCiien7YrnfPSHUWpgMi6_M",
-  authDomain: "video-analytics-3591d.firebaseapp.com",
-  projectId: "video-analytics-3591d",
-  storageBucket: "video-analytics-3591d.appspot.com",
-  messagingSenderId: "538526220143",
-  appId: "1:538526220143:web:8cb90838ebbd47c496b29a",
-  measurementId: "G-DM8QC8J6ML"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
