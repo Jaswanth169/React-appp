@@ -1,38 +1,36 @@
-import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { config } from 'dotenv';
+// src/Components/Firebase.jsx
 
-// Load environment variables from .env file
-config();
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  apiKey: import.meta.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: import.meta.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: import.meta.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
-export const provider = new GoogleAuthProvider();
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = (navigate) => {
-  signInWithPopup(auth, provider).then((result) => {
-    const name = result.user.displayName;
-    const email = result.user.email;
-    const profilePic = result.user.photoURL;
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const { displayName, email, photoURL } = result.user;
 
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
-    localStorage.setItem("profilePic", profilePic);
+      localStorage.setItem("name", displayName);
+      localStorage.setItem("email", email);
+      localStorage.setItem("profilePic", photoURL);
 
-    navigate("/upload");
-  }).catch((error) => {
-    console.log(error);
-  });
+      navigate("/upload");
+    })
+    .catch((error) => {
+      console.error("Error signing in with Google:", error);
+    });
 };
 
 export default app;
