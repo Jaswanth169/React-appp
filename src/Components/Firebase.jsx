@@ -1,21 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
-// Firebase configuration object using Vite environment variables
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyAtagpsMTKHyCiien7YrnfPSHUWpgMi6_M",
+  authDomain: "video-analytics-3591d.firebaseapp.com",
+  projectId: "video-analytics-3591d",
+  storageBucket: "video-analytics-3591d.appspot.com",
+  messagingSenderId: "538526220143",
+  appId: "1:538526220143:web:8cb90838ebbd47c496b29a",
+  measurementId: "G-DM8QC8J6ML"
 };
 
-// Log Firebase configuration to ensure variables are loaded correctly
-console.log("Firebase Configuration:", firebaseConfig);
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const provider = new GoogleAuthProvider();
