@@ -15,7 +15,7 @@ function Transcription() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://speechdia.azurewebsites.net/read_texts');  // Ensure this URL is correct
+      const response = await axios.get('http://57.151.81.11:80/read_texts');  // Ensure this URL is correct
       const { transcribed_text, translated_text } = response.data;
       setTranscribedText(transcribed_text);
       setTranslatedText(translated_text);
