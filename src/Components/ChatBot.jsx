@@ -14,7 +14,7 @@ function ChatBot() {
     }
 
     try {
-      const response = await axios.post("https://speechdia.azurewebsites.net/ask", { question: userInput });
+      const response = await axios.post("http://57.151.81.11:80/ask", { question: userInput });
 
       console.log("Response from backend:", response.data); // Log response for debugging
 
