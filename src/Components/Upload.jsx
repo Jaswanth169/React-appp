@@ -57,7 +57,7 @@ function Upload() {
     formData.append(fileType === 'video' ? 'video_file' : 'audio_file', file);
     formData.append('choice', fileType === 'video' ? '3' : '2');
 
-    axios.post('http://57.151.81.11:80/process_audio', formData)
+    axios.post('https://57.151.81.11/process_audio', formData)
       .then(response => {
         // Handle success response
         if (fileType === 'video') {
